@@ -1,6 +1,6 @@
 object frmMain: TfrmMain
-  Left = 1529
-  Top = 216
+  Left = 0
+  Top = 0
   Width = 280
   Height = 137
   Caption = 'Roulette'
@@ -32,12 +32,6 @@ object frmMain: TfrmMain
     Width = 123
     Height = 13
     Caption = 'Insert number of photo'#39's:'
-  end
-  object imgToets: TImage
-    Left = 0
-    Top = 0
-    Width = 17
-    Height = 25
   end
   object edtNum: TEdit
     Left = 8

@@ -11,7 +11,6 @@ type
     Label1: TLabel;
     edtNum: TEdit;
     Label2: TLabel;
-    imgToets: TImage;
     btnGo: TBitBtn;
     procedure btnGoClick(Sender: TObject);
   private
@@ -31,6 +30,7 @@ implementation
 procedure TfrmMain.btnGoClick(Sender: TObject);
 begin
 // verander na toets string
+  frmGame.num := strtoint(edtNum.text);
   frmMain.Hide;
   frmGame.Show;
 end;
