@@ -20,6 +20,7 @@ type
     Shape2: TShape;
     Timer1: TTimer;
     Timer2: TTimer;
+    tmrAll: TTimer;
     Timer3: TTimer;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnSpinClick(Sender: TObject);
@@ -31,11 +32,13 @@ type
     procedure Timer1Timer(Sender: TObject);
     procedure Timer2Timer(Sender: TObject);
     procedure reset;
+    procedure tmrAllTimer(Sender: TObject);
+    procedure Timer3Timer(Sender: TObject);
   private
   k : integer;
     { Private declarations }
   public
-  pic1, pic2, pic3, pic4, pic5, num : integer;
+  pic1, pic2, pic3, pic4, pic5, num, speed : integer;
     { Public declarations }
   end;
 
@@ -55,6 +58,7 @@ end;
 
 procedure TfrmGame.btnSpinClick(Sender: TObject);
 begin
+k := 0;
 reset;
 start;
 
@@ -64,25 +68,15 @@ end;
 procedure TfrmGame.FormCreate(Sender: TObject);
 begin
   frmGame.DoubleBuffered := true;
-{  imgBack.width := frmGame.Width;
-  imgBack.Height := frmGame.Height;
-
-  btnSpin.Left := trunc((frmGame.Width-89)/2);
-  Label1.Left := trunc((frmGame.Width-308)/2); }
   reset;
 end;
 
 procedure TfrmGame.FormResize(Sender: TObject);
 begin
- { imgBack.width := frmGame.Width;
-  imgBack.Height := frmGame.Height;
-  btnSpin.Left := trunc((frmGame.Width-89)/2);
-  Label1.Left := trunc((frmGame.Width-308)/2);}
   reset;
 end;
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////NEXT/////////
 procedure TfrmGame.Next(image: integer);
-// Next ontvang die integer van die foto wat verruil moet word en verander dan die foto na 'n random//
 begin
 randomize;
   case image of
@@ -141,39 +135,34 @@ end;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////MOVE//////////////
 procedure TfrmGame.Move;
 begin
-  Image1.Left := Image1.Left-5;
-  Image2.Left := Image2.Left-5;
-  Image3.Left := Image3.Left-5;
-  Image4.Left := Image4.Left-5;
-  Image5.Left := Image5.Left-5;
+  Image1.Left := Image1.Left-speed;
+  Image2.Left := Image2.Left-speed;
+  Image3.Left := Image3.Left-speed;
+  Image4.Left := Image4.Left-speed;
+  Image5.Left := Image5.Left-speed;
 
   if (Image1.Left < (0-Shape1.Width)) then
   begin
-    {Image1.Left := frmGame.Width-trunc(Image1.Width/2);}
     Image1.Left := Image5.Left+Image5.Width+20;
     Next(1);
   end;
   if (Image2.Left < (0-Shape1.Width)) then
   begin
-    {Image2.Left := frmGame.Width-trunc(Image1.Width/2);}
     Image2.Left := Image1.Left+Image1.Width+20;
     Next(2);
   end;
   if (Image3.Left < (0-Shape1.Width)) then
   begin
-   { Image3.Left := frmGame.Width-trunc(Image1.Width/2);}
    Image3.Left := Image2.Left+Image2.Width+20;
     Next(3);
   end;
   if (Image4.Left < (0-Shape1.Width)) then
   begin
-    {Image4.Left := frmGame.Width-trunc(Image1.Width/2);}
     Image4.Left := Image3.Left+Image3.Width+20;
     Next(4);
   end;
   if (Image5.Left < (0-Shape1.Width)) then
   begin
-    {Image5.Left := frmGame.Width-trunc(Image1.Width/2);}
     Image5.Left := Image4.Left+Image4.Width+20;
     Next(5);
   end;
@@ -214,6 +203,7 @@ Image5.Picture.LoadFromFile(inttostr(pic5)+'.jpg');
 
 //
 k := 1;
+tmrAll.Enabled := true;
 Timer1.Enabled := true;
 end;
 
@@ -221,22 +211,17 @@ end;
 
 procedure TfrmGame.Timer1Timer(Sender: TObject);
 begin
+speed := 50;
 move;
-if k> 500 then
-begin
-  Timer1.Enabled := false;
-  Timer2.Enabled := true;
-  k := 0;
-end;
-
 
 end;
 
 
 procedure TfrmGame.Timer2Timer(Sender: TObject);
 begin
+  speed := 5;
   move;
-if k>200 then
+if k>175 then
 begin
   Timer2.Enabled := false;
   if (trunc(frmGame.Width/2)- Image1.Left)< 200 then
@@ -347,6 +332,25 @@ begin
   Image5.Height := trunc(Image5.Width * 1.5);
   Image5.Left := Image1.Width + Image2.Width + Image3.Width + Image4.Width +100;
   Image5.Top := (Shape1.Top + 5);
+
+end;
+
+procedure TfrmGame.tmrAllTimer(Sender: TObject);
+begin
+  Timer1.Enabled := false;
+  Timer3.Enabled := true;
+  tmrAll.Enabled := false;
+end;
+
+procedure TfrmGame.Timer3Timer(Sender: TObject);
+begin
+  speed := 15;
+  move;
+  if k > 100 then
+  begin
+    Timer3.Enabled := false;
+    Timer2.Enabled := true;
+  end;
 
 end;
 

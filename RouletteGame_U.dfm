@@ -1,6 +1,6 @@
 object frmGame: TfrmGame
-  Left = 0
-  Top = 0
+  Left = 717
+  Top = 299
   Width = 1008
   Height = 739
   HorzScrollBar.Position = 18
@@ -12050,10 +12050,18 @@ object frmGame: TfrmGame
     Left = 8
     Top = 40
   end
-  object Timer3: TTimer
+  object tmrAll: TTimer
     Enabled = False
-    Interval = 20
+    Interval = 3500
+    OnTimer = tmrAllTimer
     Left = 8
     Top = 72
+  end
+  object Timer3: TTimer
+    Enabled = False
+    Interval = 1
+    OnTimer = Timer3Timer
+    Left = 8
+    Top = 104
   end
 end
