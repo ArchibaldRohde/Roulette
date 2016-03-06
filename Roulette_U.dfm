@@ -52,4 +52,13 @@ object frmMain: TfrmMain
     OnClick = btnGoClick
     Kind = bkOK
   end
+  object Button1: TButton
+    Left = 184
+    Top = 32
+    Width = 75
+    Height = 25
+    Caption = 'Admin'
+    TabOrder = 2
+    OnClick = Button1Click
+  end
 end

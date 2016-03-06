@@ -12,7 +12,9 @@ type
     edtNum: TEdit;
     Label2: TLabel;
     btnGo: TBitBtn;
+    Button1: TButton;
     procedure btnGoClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
  
     { Private declarations }
@@ -25,7 +27,7 @@ var
 
 implementation
 
-uses DMod_U;
+uses DMod_U, Admin_U;
 
 {$R *.dfm}
 
@@ -55,6 +57,12 @@ Dmod.tblData.First;
 
   frmMain.Hide;
   frmGame.Show;
+end;
+
+procedure TfrmMain.Button1Click(Sender: TObject);
+begin
+  frmMain.Hide;
+  frmAdmin.show;
 end;
 
 end.
