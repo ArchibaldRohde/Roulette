@@ -25,12 +25,28 @@ var
 
 implementation
 
+uses DMod_U;
+
 {$R *.dfm}
 
 procedure TfrmMain.btnGoClick(Sender: TObject);
+var
+j : integer;
 begin
-// verander na toets string
+j := 1;
+Dmod.tblData.First;
   frmGame.num := strtoint(edtNum.text);
+  SetLength(frmGame.arrName, frmGame.num + 1);
+  SetLength(frmGame.arrImage, frmGame.num + 1);
+  while not Dmod.tblData.Eof do
+  begin
+    frmGame.arrName[j] := Dmod.tblData['Student'];
+    frmGame.arrImage[j] := Dmod.tblData['Image'];
+    dmod.tbldata.next;
+    inc(j);
+  end;
+
+
   frmMain.Hide;
   frmGame.Show;
 end;

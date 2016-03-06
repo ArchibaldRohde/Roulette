@@ -1,6 +1,6 @@
 object frmMain: TfrmMain
-  Left = 0
-  Top = 0
+  Left = 288
+  Top = 175
   Width = 280
   Height = 137
   Caption = 'Roulette'

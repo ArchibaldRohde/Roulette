@@ -12019,6 +12019,20 @@ object frmGame: TfrmGame
     Height = 305
     Brush.Color = clBlack
   end
+  object Label2: TLabel
+    Left = 423
+    Top = 143
+    Width = 99
+    Height = 42
+    Caption = 'Label2'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -35
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    Visible = False
+  end
   object btnSpin: TBitBtn
     Left = 462
     Top = 95
