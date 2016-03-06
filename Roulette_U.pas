@@ -40,6 +40,12 @@ Dmod.tblData.First;
   SetLength(frmGame.arrImage, frmGame.num + 1);
   while not Dmod.tblData.Eof do
   begin
+    if j > frmGame.num then
+    begin
+        SetLength(frmGame.arrName, j+1);
+        SetLength(frmGame.arrImage, j+1);
+    end;
+
     frmGame.arrName[j] := Dmod.tblData['Student'];
     frmGame.arrImage[j] := Dmod.tblData['Image'];
     dmod.tbldata.next;
